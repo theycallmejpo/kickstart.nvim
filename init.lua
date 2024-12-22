@@ -333,28 +333,19 @@ require('lazy').setup({
   },
 
   {
+    -- LSP diagnostics UI
     'folke/trouble.nvim',
     opts = {
-      icons = false,
-      fold_open = "v",      -- icon used for open folds
-      fold_closed = ">",    -- icon used for closed folds
-      indent_lines = false, -- add an indent guide below the fold icons
-      signs = {
-        -- icons / text used for a diagnostic
-        error = "error",
-        warning = "warn",
-        hint = "hint",
-        information = "info"
+      focus = true,
+      keys = {
+        [">"] = "fold_open_recursive",
+        ["<"] = "fold_close_recursive",
       },
-      use_diagnostic_signs = false -- enabling this will use the signs defined in your lsp client
     },
+    cmd = "Trouble",
     keys = {
-      { "<leader>xx", "<cmd>TroubleToggle<CR>",                       desc = "Open/close trouble list" },
-      { "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<CR>", desc = "Open trouble workspace diagnostics" },
-      { "<leader>xd", "<cmd>TroubleToggle document_diagnostics<CR>",  desc = "Open trouble document diagnostics" },
-      { "<leader>xq", "<cmd>TroubleToggle quickfix<CR>",              desc = "Open trouble quickfix list" },
-      { "<leader>xl", "<cmd>TroubleToggle loclist<CR>",               desc = "Open trouble location list" },
-      { "<leader>xt", "<cmd>TodoTrouble<CR>",                         desc = "Open todos in trouble" },
+      { "<leader>a",  "<cmd>Trouble diagnostics toggle<cr>",              desc = "Open/close all LSP issues" },
+      { "<leader>ic", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Open/close LSP issues in current buffer" },
     },
   },
 
